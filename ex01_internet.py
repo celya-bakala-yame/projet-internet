@@ -24,7 +24,7 @@ class MyHTMLParser(HTMLParser):
 class IMDBParser(HTMLParser):
     # Votre classe ici
     def __init__(self):
-        pass
+        super().__init__()
 
     def handle_starttag(self, tag, attrs):
         pass
@@ -46,7 +46,10 @@ def scrap_imdb(html_data):
         Liste de films
     """
     # Votre code ici...
-    html_data = r.readlines()
+    parser = IMDBParser()
+    parser.feed(html_data)
+
+    return parser.movies
     l = [line for line in html_data if 'titleColumn' in line]
     l = []
     return l
